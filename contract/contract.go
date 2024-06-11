@@ -77,13 +77,6 @@ func (j *jsonrpcTransaction) Build() error {
 	var err error
 	from := j.key.Address()
 
-	// estimate gas price
-	if j.opts.GasPrice == 0 && !j.eip1559 {
-		j.opts.GasPrice, err = j.client.GasPrice()
-		if err != nil {
-			return err
-		}
-	}
 	// estimate gas limit
 	if j.opts.GasLimit == 0 {
 		msg := &ethgo.CallMsg{
